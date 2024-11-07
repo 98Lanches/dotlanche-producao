@@ -19,7 +19,7 @@ namespace Dotlanche.Producao.Data.DependencyInjection
 
             RegisterConventions();
 
-            services.AddScoped<IRepository, EmptyRepository>();
+            services.AddScoped<IPedidoEmProducaoRepository, PedidoEmProducaoRepository>();
 
             return services;
         }

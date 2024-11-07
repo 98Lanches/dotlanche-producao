@@ -4,7 +4,7 @@ namespace Dotlanche.Producao.WebApi.Mappers
 {
     public static class ResponseMapper
     {
-        public static Response ToResponse(this Response response)
+        public static StartProducaoPedidoResponse ToResponse(this StartProducaoPedidoResponse response)
         {
             throw new NotImplementedException();
         }

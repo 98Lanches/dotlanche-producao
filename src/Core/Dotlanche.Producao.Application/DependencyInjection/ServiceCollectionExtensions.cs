@@ -9,7 +9,7 @@ namespace Dotlanche.Producao.Application.DependencyInjection
     {
         public static IServiceCollection AddUseCases(this IServiceCollection services)
         {
-            services.AddScoped<IUseCase, EmptyUseCase>();
+            services.AddScoped<IIniciarProducaoPedidoUseCase, IniciarProducaoPedidoUseCase>();
 
             return services;
         }

@@ -13,8 +13,8 @@ namespace Dotlanche.Producao.BDDTests.StepDefinitions
 
         private readonly JsonSerializerOptions jsonOptions = new() { PropertyNameCaseInsensitive = true };
 
-        private Request request = new();
-        private Response? response;
+        private StartProducaoPedidoRequest request = new();
+        private StartProducaoPedidoResponse? response;
 
         public StepDefinitions(WebApiFactory apiFactory)
         {

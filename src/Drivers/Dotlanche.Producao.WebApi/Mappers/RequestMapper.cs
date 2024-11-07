@@ -5,7 +5,7 @@ namespace Dotlanche.Producao.WebApi.Mappers
 {
     public static class RequestMapper
     {
-        public static Entity ToDomainModel(this Request request)
+        public static PedidoEmProducao ToDomainModel(this StartProducaoPedidoRequest request)
         {
             throw new NotImplementedException();
         }
