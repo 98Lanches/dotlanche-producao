@@ -46,7 +46,20 @@ namespace Dotlanche.Producao.WebApi.Controllers
 
             var pedidoEmProducao = await iniciarProducaoPedidoUseCase.ExecuteAsync(pedidoAceito);
 
-            return Created(string.Empty, pedidoEmProducao);
+            var response = new StartProducaoPedidoResponse()
+            {
+                Success = true,
+                QueueKey = pedidoEmProducao.QueueKey,
+                Status = pedidoEmProducao.Status,
+                Combos = pedidoEmProducao.Combos
+                .Select(x => new ComboDTO()
+                {
+                    Id = x.Id,
+                    ProdutoGuids = x.Produtos.Select(y => y.Id)
+                }),
+            };
+
+            return Created(string.Empty, response);
         }
     }
 }

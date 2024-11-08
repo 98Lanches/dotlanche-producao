@@ -20,15 +20,9 @@ namespace Dotlanche.Producao.Application.UseCases
 
         public async Task<PedidoEmProducao> ExecuteAsync(PedidoConfirmado pedidoConfirmado)
         {
-            var nextKeyTask = repository.GetNextKey();
-            var getCombosTask = GetCombosProdutosFromPedidoAceito(pedidoConfirmado);
+            var combos = await GetCombosProdutosFromPedidoAceito(pedidoConfirmado);
 
-            await Task.WhenAll(getCombosTask, nextKeyTask);
-
-            var nextKey = await nextKeyTask;
-            var combos = await getCombosTask;
-
-            var newProdutoEmProducao = new PedidoEmProducao(pedidoConfirmado, combos, nextKey);
+            var newProdutoEmProducao = new PedidoEmProducao(pedidoConfirmado, combos);
             newProdutoEmProducao = await repository.Add(newProdutoEmProducao);
 
             return newProdutoEmProducao;
@@ -52,7 +46,7 @@ namespace Dotlanche.Producao.Application.UseCases
                     produtosInCombo.Add(produto);
                 }
 
-                combos.Add(new ComboProdutos(produtosInCombo));
+                combos.Add(new ComboProdutos(combo.Id, produtosInCombo));
             }
 
             return combos;

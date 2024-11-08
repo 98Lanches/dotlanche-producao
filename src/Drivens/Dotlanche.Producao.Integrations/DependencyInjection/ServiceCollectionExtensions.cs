@@ -10,6 +10,7 @@ namespace Dotlanche.Producao.Integrations.DependencyInjection
     {
         public static IServiceCollection AddServiceIntegrations(this IServiceCollection services, IConfiguration config)
         {
+            services.AddScoped<IProdutoServiceClient, ProdutoServiceClient>();
             services.AddHttpClient<IProdutoServiceClient, ProdutoServiceClient>(client =>
             {
                 client.BaseAddress = new Uri(config["Integrations:ProdutoService:BaseAddress"] ?? 

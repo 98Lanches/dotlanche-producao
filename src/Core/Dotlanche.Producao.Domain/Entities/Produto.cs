@@ -10,12 +10,12 @@
             Price = price;
         }
 
-        public readonly Guid Id;
+        public Guid Id { get; private set; }
 
-        public readonly string Name;
+        public string Name { get; private set; }
 
-        public readonly string Categoria;
+        public string Categoria { get; private set; }
 
-        public readonly decimal Price;
+        public decimal Price { get; private set; }
     }
 }

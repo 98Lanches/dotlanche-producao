@@ -1,5 +1,6 @@
 using Dotlanche.Producao.Application.DependencyInjection;
 using Dotlanche.Producao.Data.DependencyInjection;
+using Dotlanche.Producao.Integrations.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text.Json.Serialization;
@@ -12,13 +13,14 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddMongoDatabase(builder.Configuration);
-        builder.Services.AddUseCases();
-
         builder.Services.Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(options =>
         {
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
         });
+
+        builder.Services.AddMongoDatabase(builder.Configuration);
+        builder.Services.AddServiceIntegrations(builder.Configuration);
+        builder.Services.AddUseCases();
 
         builder.Services.AddHealthChecks()
                 .AddMongoDb(builder.Configuration.GetConnectionString("DefaultConnection")

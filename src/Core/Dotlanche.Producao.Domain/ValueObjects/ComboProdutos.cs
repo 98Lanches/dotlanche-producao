@@ -4,11 +4,14 @@ namespace Dotlanche.Producao.Domain.ValueObjects
 {
     public record ComboProdutos
     {
-        public ComboProdutos(IEnumerable<Produto> produtos)
+        public ComboProdutos(Guid Id, IEnumerable<Produto> produtos)
         {
+            this.Id = Id;
             Produtos = produtos.ToList();
         }
 
         public readonly List<Produto> Produtos = [];
+
+        public Guid Id { get; }
     }
 }
