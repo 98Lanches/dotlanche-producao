@@ -50,6 +50,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".kubernetes", ".kubernetes"
 		.kubernetes\service.yaml = .kubernetes\service.yaml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dotlanche.Producao.Integrations", "src\Drivens\Dotlanche.Producao.Integrations\Dotlanche.Producao.Integrations.csproj", "{AC7B1ACF-A20F-4D27-A16B-825130CCEE1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,6 +82,10 @@ Global
 		{F5F01254-97DB-4CAC-AF90-F82DEE5309D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5F01254-97DB-4CAC-AF90-F82DEE5309D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5F01254-97DB-4CAC-AF90-F82DEE5309D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC7B1ACF-A20F-4D27-A16B-825130CCEE1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC7B1ACF-A20F-4D27-A16B-825130CCEE1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC7B1ACF-A20F-4D27-A16B-825130CCEE1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC7B1ACF-A20F-4D27-A16B-825130CCEE1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,6 +104,7 @@ Global
 		{AB7EFD19-7116-4DAB-9219-954895C200D6} = {55FBC674-0B59-4681-A3FB-96A1B0D8A91D}
 		{F5F01254-97DB-4CAC-AF90-F82DEE5309D7} = {AB7EFD19-7116-4DAB-9219-954895C200D6}
 		{F7116C22-47DB-4555-A2E0-1DD3F79F6666} = {9B56F62E-CD5D-4C33-B43B-5361E74A69FA}
+		{AC7B1ACF-A20F-4D27-A16B-825130CCEE1E} = {182EF4B5-C954-4A5D-ADA9-7B78A618470F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6ECDB785-EB23-41CA-921B-B5776B7E7132}

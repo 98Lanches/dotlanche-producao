@@ -16,7 +16,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Dotlanche.Producao.Application\Dotlanche.Producao.Application.csproj" />
+    <ProjectReference Include="..\..\Core\Dotlanche.Producao.Domain\Dotlanche.Producao.Domain.csproj" />
     <ProjectReference Include="..\..\Drivens\Dotlanche.Producao.Data\Dotlanche.Producao.Data.csproj" />
+    <ProjectReference Include="..\..\Drivens\Dotlanche.Producao.Integrations\Dotlanche.Producao.Integrations.csproj" />
   </ItemGroup>
 
   <ItemGroup>

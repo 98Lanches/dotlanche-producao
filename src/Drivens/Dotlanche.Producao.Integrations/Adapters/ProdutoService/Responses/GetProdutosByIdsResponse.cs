@@ -1,0 +1,11 @@
+﻿namespace Dotlanche.Producao.Integrations.Adapters.ProdutoService.Responses
+{
+    internal class GetProdutosByIdsResponse
+    {
+        public required Guid Id { get; set; }
+        public required string Name { get; set; }
+        public required string Description { get; set; }
+        public required decimal Price { get; set; }
+        public required string Categoria { get; set; }
+    }
+}
