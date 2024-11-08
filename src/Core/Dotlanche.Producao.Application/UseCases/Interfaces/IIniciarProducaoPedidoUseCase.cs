@@ -4,6 +4,6 @@ namespace Dotlanche.Producao.Application.UseCases
 {
     public interface IIniciarProducaoPedidoUseCase
     {
-        public Task<PedidoEmProducao> ExecuteAsync(PedidoAceito pedidoAceito);
+        public Task<PedidoEmProducao> ExecuteAsync(PedidoConfirmado pedidoConfirmado);
     }
 }

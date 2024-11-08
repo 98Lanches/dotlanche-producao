@@ -5,11 +5,11 @@ namespace Dotlanche.Producao.Domain.Entities
 {
     public class PedidoEmProducao
     {
-        public PedidoEmProducao(PedidoAceito pedidoAceito,
+        public PedidoEmProducao(PedidoConfirmado pedidoConfirmado,
                                 IEnumerable<ComboProdutos> produtos,
                                 string key)
         {
-            Id = pedidoAceito.Id;
+            Id = pedidoConfirmado.Id;
             Combos = produtos;
             Key = key;
             Status = StatusProducaoPedido.Recebido;

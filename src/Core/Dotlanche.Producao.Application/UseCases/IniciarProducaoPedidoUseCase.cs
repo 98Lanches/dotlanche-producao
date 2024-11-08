@@ -9,43 +9,42 @@ namespace Dotlanche.Producao.Application.UseCases
     public class IniciarProducaoPedidoUseCase : IIniciarProducaoPedidoUseCase
     {
         private readonly IPedidoEmProducaoRepository repository;
-        private readonly IProdutoClient produtoClient;
+        private readonly IProdutoServiceClient produtoClient;
 
         public IniciarProducaoPedidoUseCase(IPedidoEmProducaoRepository repository,
-                                            IProdutoClient produtoClient)
+                                            IProdutoServiceClient produtoClient)
         {
             this.repository = repository;
             this.produtoClient = produtoClient;
         }
 
-        public async Task<PedidoEmProducao> ExecuteAsync(PedidoAceito pedidoAceito)
+        public async Task<PedidoEmProducao> ExecuteAsync(PedidoConfirmado pedidoConfirmado)
         {
             var nextKeyTask = repository.GetNextKey();
-            var getCombosTask = GetCombosProdutosFromPedidoAceito(pedidoAceito);
+            var getCombosTask = GetCombosProdutosFromPedidoAceito(pedidoConfirmado);
 
             await Task.WhenAll(getCombosTask, nextKeyTask);
 
             var nextKey = await nextKeyTask;
             var combos = await getCombosTask;
 
-            var newProdutoEmProducao = new PedidoEmProducao(pedidoAceito, combos, nextKey);
+            var newProdutoEmProducao = new PedidoEmProducao(pedidoConfirmado, combos, nextKey);
             newProdutoEmProducao = await repository.Add(newProdutoEmProducao);
 
             return newProdutoEmProducao;
         }
 
-        private async Task<IEnumerable<ComboProdutos>> GetCombosProdutosFromPedidoAceito(PedidoAceito pedidoAceito)
+        private async Task<IEnumerable<ComboProdutos>> GetCombosProdutosFromPedidoAceito(PedidoConfirmado pedidoConfirmado)
         {
-            var comboDict = pedidoAceito.Combos.ToDictionary(c => c.Id, c => c.ProdutoIds.ToList());
-
-            var allProdutoIds = comboDict.SelectMany(x => x.Value).Distinct();
+            var allProdutoIds = pedidoConfirmado.Combos.SelectMany(x => x.ProdutoIds).Distinct();
             var produtos = await produtoClient.GetByIds(allProdutoIds);
 
-            var combos = new List<ComboProdutos>(capacity: comboDict.Keys.Count);
-            foreach (var (comboId, produtoIdList) in comboDict)
+            var combos = new List<ComboProdutos>();
+
+            foreach (var combo in pedidoConfirmado.Combos)
             {
-                var produtosInCombo = new List<Produto>(capacity: produtoIdList.Count);
-                foreach (var idProduto in produtoIdList)
+                var produtosInCombo = new List<Produto>();
+                foreach (var idProduto in combo.ProdutoIds)
                 {
                     var produto = produtos.FirstOrDefault(x => x.Id == idProduto) ??
                         throw new UseCaseException($"Produto {idProduto} not found!");

@@ -39,7 +39,7 @@ namespace Dotlanche.Producao.WebApi.Controllers
                 });
             }
 
-            var pedidoAceito = new PedidoAceito(
+            var pedidoAceito = new PedidoConfirmado(
                 request.PedidoId,
                 request.Combos.Select(x => new ComboAceito(x.Id, x.ProdutoGuids))
             );

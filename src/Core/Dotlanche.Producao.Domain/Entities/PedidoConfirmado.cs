@@ -2,9 +2,9 @@
 
 namespace Dotlanche.Producao.Domain.Entities
 {
-    public class PedidoAceito
+    public class PedidoConfirmado
     {
-        public PedidoAceito(Guid id, IEnumerable<ComboAceito> combos)
+        public PedidoConfirmado(Guid id, IEnumerable<ComboAceito> combos)
         {
             Id = id;
             Combos = combos;
