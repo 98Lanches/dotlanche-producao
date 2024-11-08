@@ -1,4 +1,4 @@
-﻿namespace Dotlanche.Producao.WebApi.Exceptions
+﻿namespace Dotlanche.Producao.Application.Exceptions
 {
     public class MisconfigurationException : Exception
     {
