@@ -6,19 +6,20 @@ using WireMock.Server;
 
 namespace Dotlanche.Producao.BDDTests.Drivers
 {
-    public sealed class ProdutoServiceDriver : IDisposable
+    public static class ProdutoServiceDriver
     {
-        private WireMockServer produtoServiceServerMock;
+        public static WireMockServer? produtoServiceServerMock;
 
-        public const int ServerPort = 8082;
-
-        public ProdutoServiceDriver()
+        public static void SetWiremockServer(WireMockServer wireMockServer)
         {
-            produtoServiceServerMock = WireMockServer.Start(ServerPort);
+            produtoServiceServerMock = wireMockServer;
         }
 
-        public void SetupGetProdutosByIdMock(IEnumerable<Guid> ids, IEnumerable<Produto> produtos)
+        public static void SetupGetProdutosByIdMock(IEnumerable<Guid> ids, IEnumerable<Produto> produtos)
         {
+            if (produtoServiceServerMock == null || !produtoServiceServerMock.IsStarted)
+                throw new InvalidOperationException("Wiremock server needs to be set before setting it up!");
+
             var responseJson = JsonSerializer.Serialize(produtos);
 
             produtoServiceServerMock
@@ -32,11 +33,6 @@ namespace Dotlanche.Producao.BDDTests.Drivers
                     .WithHeader("Content-Type", "application/json")
                     .WithBody(responseJson)
                 );
-        }
-
-        public void Dispose()
-        {
-            produtoServiceServerMock.Dispose();
         }
     }
 }

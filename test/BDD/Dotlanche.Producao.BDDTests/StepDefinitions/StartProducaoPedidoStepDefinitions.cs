@@ -18,15 +18,13 @@ namespace Dotlanche.Producao.BDDTests.StepDefinitions
         private readonly IServiceScope scope;
 
         private readonly JsonSerializerOptions jsonOptions;
-        private readonly ProdutoServiceDriver produtoServiceDriver;
         private StartProducaoPedidoRequest request;
         private StartProducaoPedidoResponse? response;
 
-        public StartProducaoPedidoStepDefinitions(WebApiFactory apiFactory, ProdutoServiceDriver produtoServiceDriver)
+        public StartProducaoPedidoStepDefinitions(WebApiFactory apiFactory)
         {
             apiClient = apiFactory.CreateClient();
             scope = apiFactory.Services.CreateScope();
-            this.produtoServiceDriver = produtoServiceDriver;
 
             jsonOptions = new() { PropertyNameCaseInsensitive = true };
             jsonOptions.Converters.Add(new JsonStringEnumConverter());
@@ -48,7 +46,7 @@ namespace Dotlanche.Producao.BDDTests.StepDefinitions
         public void GivenTheFollowingProductsExistInProductService(DataTable produtosTable)
         {
             var existingProdutos = produtosTable.CreateSet<Produto>();
-            produtoServiceDriver.SetupGetProdutosByIdMock(request.Combos.SelectMany(x => x.ProdutoIds).Distinct(), existingProdutos);
+            ProdutoServiceDriver.SetupGetProdutosByIdMock(request.Combos.SelectMany(x => x.ProdutoIds).Distinct(), existingProdutos);
         }
 
         [Given("o pedido possui os seguintes combos:")]

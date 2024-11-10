@@ -1,5 +1,4 @@
 ﻿using Dotlanche.Producao.BDDTests.Setup;
-using Reqnroll;
 
 namespace Dotlanche.Producao.BDDTests.Hooks
 {
