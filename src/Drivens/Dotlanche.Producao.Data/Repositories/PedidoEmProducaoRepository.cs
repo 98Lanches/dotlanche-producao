@@ -1,5 +1,4 @@
 ﻿using Dotlanche.Producao.Data.DTOs;
-using Dotlanche.Producao.Data.Exceptions;
 using Dotlanche.Producao.Domain.Entities;
 using Dotlanche.Producao.Domain.Repositories;
 using MongoDB.Driver;
@@ -32,26 +31,6 @@ namespace Dotlanche.Producao.Data.Repositories
             await _pedidosCollection.InsertOneAsync(novoPedido);
 
             return novoPedido;
-        }
-
-        public async Task<PedidoEmProducao> Update(PedidoEmProducao e)
-        {
-            var filter = Builders<PedidoEmProducao>.Filter.Eq(p => p.Id, e.Id);
-            var result = await _pedidosCollection.ReplaceOneAsync(filter, e);
-
-            if (result.MatchedCount == 0)
-                throw new DatabaseException($"{e.Id} was not found!");
-
-            return e;
-        }
-
-        public async Task<PedidoEmProducao?> GetById(Guid id)
-        {
-            var e = await _pedidosCollection
-                .Find(p => p.Id == id)
-                .FirstOrDefaultAsync();
-
-            return e;
         }
 
         private async Task<int> GetNextQueueKey()
