@@ -13,7 +13,7 @@ namespace Dotlanche.Producao.WebApi.Mappers
                 QueueKey = pedidoEmProducao.QueueKey,
                 Status = pedidoEmProducao.Status,
                 Combos = pedidoEmProducao.Combos
-                .Select(x => new ComboDTO()
+                .Select(x => new ComboDto()
                 {
                     Id = x.Id,
                     ProdutoIds = x.Produtos.Select(y => y.Id)

@@ -10,7 +10,7 @@ namespace Dotlanche.Producao.Domain.ValueObjects
             Produtos = produtos.ToList();
         }
 
-        public readonly List<Produto> Produtos = [];
+        public readonly IReadOnlyList<Produto> Produtos = [];
 
         public Guid Id { get; }
     }

@@ -4,7 +4,7 @@
     {
         public required Guid PedidoId { get; set; }
 
-        public required IEnumerable<ComboDTO> Combos { get; set; }
+        public required IEnumerable<ComboDto> Combos { get; set; }
 
         public bool Validate(out List<string> problemDetails)
         {

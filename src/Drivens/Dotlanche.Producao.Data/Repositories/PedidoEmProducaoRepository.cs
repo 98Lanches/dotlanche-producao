@@ -13,13 +13,11 @@ namespace Dotlanche.Producao.Data.Repositories
 
         private readonly IMongoCollection<PedidoEmProducao> _pedidosCollection;
         private readonly IMongoCollection<QueueControl> _keysCollection;
-        private readonly IMongoDatabase database;
 
         public PedidoEmProducaoRepository(IMongoDatabase database)
         {
             _pedidosCollection = database.GetCollection<PedidoEmProducao>(pedidosCollection);
             _keysCollection = database.GetCollection<QueueControl>(keysCollection);
-            this.database = database;
         }
 
         public async Task<PedidoEmProducao> Add(PedidoEmProducao novoPedido)

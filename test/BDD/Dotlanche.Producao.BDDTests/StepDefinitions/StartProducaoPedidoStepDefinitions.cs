@@ -57,7 +57,7 @@ namespace Dotlanche.Producao.BDDTests.StepDefinitions
             var combos = combosTable
                             .CreateSet<ComboDataTableObject>()
                             .GroupBy(x => x.ComboId)
-                            .Select(x => new ComboDTO
+                            .Select(x => new ComboDto
                             {
                                 Id = x.Key,
                                 ProdutoIds = x.Select(y => y.ProdutoId)
@@ -104,7 +104,7 @@ namespace Dotlanche.Producao.BDDTests.StepDefinitions
             scope.Dispose();
         }
 
-        private void ClearDatabaseCollection(IServiceProvider serviceProvider)
+        private static void ClearDatabaseCollection(IServiceProvider serviceProvider)
         {
             var client = serviceProvider.GetRequiredService<MongoClient>();
             client.DropDatabase("dotlanche-produto");

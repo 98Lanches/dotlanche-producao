@@ -1,6 +1,6 @@
 ﻿namespace Dotlanche.Producao.WebApi.DTOs
 {
-    public record ComboDTO
+    public record ComboDto
     {
         public required Guid Id { get; set; }
 

@@ -1,4 +1,5 @@
 using Dotlanche.Producao.Application.DependencyInjection;
+using Dotlanche.Producao.Application.Exceptions;
 using Dotlanche.Producao.Data.DependencyInjection;
 using Dotlanche.Producao.Integrations.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -9,6 +10,11 @@ namespace Dotlanche.Producao.WebApi;
 
 public class Program
 {
+    protected Program()
+    {
+        
+    }
+
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
@@ -24,7 +30,7 @@ public class Program
 
         builder.Services.AddHealthChecks()
                 .AddMongoDb(builder.Configuration.GetConnectionString("DefaultConnection")
-                                ?? throw new Exception("No connection string for mongodb provided!"),
+                                ?? throw new MisconfigurationException("No connection string for mongodb provided!"),
                             timeout: TimeSpan.FromSeconds(60));
 
         builder.Services.AddControllers();

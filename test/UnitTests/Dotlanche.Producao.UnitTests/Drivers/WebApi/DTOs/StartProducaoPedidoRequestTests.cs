@@ -31,7 +31,7 @@ namespace Dotlanche.Producao.UnitTests.Drivers.WebApi.DTOs
             var request = new StartProducaoPedidoRequest()
             {
                 PedidoId = Guid.NewGuid(),
-                Combos = new AutoFaker<ComboDTO>().Generate(3),
+                Combos = new AutoFaker<ComboDto>().Generate(3),
             };
 
             // Act

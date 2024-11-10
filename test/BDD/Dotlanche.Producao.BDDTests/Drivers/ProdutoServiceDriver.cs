@@ -6,7 +6,7 @@ using WireMock.Server;
 
 namespace Dotlanche.Producao.BDDTests.Drivers
 {
-    public class ProdutoServiceDriver : IDisposable
+    public sealed class ProdutoServiceDriver : IDisposable
     {
         private WireMockServer produtoServiceServerMock;
 

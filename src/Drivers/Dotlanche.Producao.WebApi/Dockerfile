@@ -11,11 +11,11 @@ COPY ["src/Drivers/Dotlanche.Producao.WebApi/Dotlanche.Producao.WebApi.csproj", 
 RUN dotnet restore "./src/Drivers/Dotlanche.Producao.WebApi/Dotlanche.Producao.WebApi.csproj"
 COPY . .
 WORKDIR "/src/Drivers/Dotlanche.Producao.WebApi"
-RUN dotnet build "./Dotlanche.Producao.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./Dotlanche.Producao.WebApi.csproj" -c "$BUILD_CONFIGURATION" -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Dotlanche.Producao.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./Dotlanche.Producao.WebApi.csproj" -c "$BUILD_CONFIGURATION" -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
