@@ -4,7 +4,7 @@ using Dotlanche.Producao.Domain.ValueObjects;
 using Dotlanche.Producao.WebApi.Mappers;
 using FluentAssertions;
 
-namespace Dotlanche.Producao.UnitTests.WebApi.Mappers
+namespace Dotlanche.Producao.UnitTests.Drivers.WebApi.Mappers
 {
     public class StartProducaoPedidoResponseMapperTests
     {
