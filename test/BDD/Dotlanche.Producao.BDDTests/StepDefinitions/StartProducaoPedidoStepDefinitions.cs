@@ -48,7 +48,7 @@ namespace Dotlanche.Producao.BDDTests.StepDefinitions
         public void GivenTheFollowingProductsExistInProductService(DataTable produtosTable)
         {
             var existingProdutos = produtosTable.CreateSet<Produto>();
-            produtoServiceDriver.SetupGetProdutosByIdMock(request.Combos.SelectMany(x => x.ProdutoGuids).Distinct(), existingProdutos);
+            produtoServiceDriver.SetupGetProdutosByIdMock(request.Combos.SelectMany(x => x.ProdutoIds).Distinct(), existingProdutos);
         }
 
         [Given("o pedido possui os seguintes combos:")]
@@ -60,7 +60,7 @@ namespace Dotlanche.Producao.BDDTests.StepDefinitions
                             .Select(x => new ComboDTO
                             {
                                 Id = x.Key,
-                                ProdutoGuids = x.Select(y => y.ProdutoId)
+                                ProdutoIds = x.Select(y => y.ProdutoId)
                             });
 
             request.Combos = combos;

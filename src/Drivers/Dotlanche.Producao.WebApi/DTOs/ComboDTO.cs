@@ -4,6 +4,6 @@
     {
         public required Guid Id { get; set; }
 
-        public required IEnumerable<Guid> ProdutoGuids { get; set; }
+        public required IEnumerable<Guid> ProdutoIds { get; set; }
     }
 }
