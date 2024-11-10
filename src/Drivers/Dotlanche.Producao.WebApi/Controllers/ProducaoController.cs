@@ -26,19 +26,13 @@ namespace Dotlanche.Producao.WebApi.Controllers
         [HttpPost]
         [ProducesResponseType<StartProducaoPedidoResponse>(StatusCodes.Status201Created)]
         [ProducesResponseType<ValidationProblemDetails>(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> StartProducaoPedido(StartProducaoPedidoRequest request)
+        public async Task<ActionResult<StartProducaoPedidoResponse>> StartProducaoPedido(StartProducaoPedidoRequest request)
         {
-            if (!request.Combos.Any())
-            {
-                return BadRequest(new ValidationProblemDetails()
-                {
-                    Title = "Invalid Pedido!",
-                    Errors = new Dictionary<string, string[]>()
-                    {
-                        { "Combos", ["A pedido must have combos with produtos!"] }
-                    }
-                });
-            }
+            var requestIsValid = request.Validate(out var errors);
+            if (!requestIsValid)
+                return Problem(title: "Invalid request!", 
+                               statusCode: StatusCodes.Status400BadRequest, 
+                               detail: string.Join(",", errors));
 
             var pedidoConfirmado = new PedidoConfirmado(
                 request.PedidoId,
