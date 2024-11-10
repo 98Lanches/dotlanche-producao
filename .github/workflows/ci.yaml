@@ -47,6 +47,10 @@ jobs:
         run: |
           dotnet tool install --global dotnet-coverage
 
+      - name: Start mongodb container
+        run: |
+          docker run -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=dotlancheProducao -e MONGO_INITDB_ROOT_PASSWORD=P455w0rd -d mongo 
+
       - name: Build, Test and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
