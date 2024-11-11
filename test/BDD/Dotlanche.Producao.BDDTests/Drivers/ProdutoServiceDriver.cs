@@ -8,7 +8,7 @@ namespace Dotlanche.Producao.BDDTests.Drivers
 {
     public static class ProdutoServiceDriver
     {
-        public static WireMockServer? produtoServiceServerMock;
+        private static WireMockServer? produtoServiceServerMock;
 
         public static void SetWiremockServer(WireMockServer wireMockServer)
         {
