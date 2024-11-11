@@ -98,14 +98,7 @@ namespace Dotlanche.Producao.BDDTests.StepDefinitions
 
         public void Dispose()
         {
-            ClearDatabaseCollection(scope.ServiceProvider);
             scope.Dispose();
-        }
-
-        private static void ClearDatabaseCollection(IServiceProvider serviceProvider)
-        {
-            var client = serviceProvider.GetRequiredService<MongoClient>();
-            client.DropDatabase("dotlanche-produto");
         }
     }
 }
