@@ -46,7 +46,7 @@ namespace Dotlanche.Producao.BDDTests.Setup
 
         protected override void Dispose(bool disposing)
         {
-
+            mongoRunner?.Dispose();
             base.Dispose(disposing);
         }
     }

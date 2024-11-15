@@ -1,6 +1,6 @@
 ﻿using Dotlanche.Producao.Domain.Entities;
 
-namespace Dotlanche.Producao.WebApi.DTOs
+namespace Dotlanche.Producao.WebApi.DTOs.Responses
 {
     public record StartProducaoPedidoResponse
     {

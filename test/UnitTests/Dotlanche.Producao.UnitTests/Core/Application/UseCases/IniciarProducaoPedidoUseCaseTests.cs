@@ -1,6 +1,7 @@
 ﻿using AutoBogus;
 using Dotlanche.Producao.Application.Exceptions;
 using Dotlanche.Producao.Application.UseCases;
+using Dotlanche.Producao.Application.UseCases.Interfaces;
 using Dotlanche.Producao.Domain.Entities;
 using Dotlanche.Producao.Domain.Ports;
 using Dotlanche.Producao.Domain.Repositories;

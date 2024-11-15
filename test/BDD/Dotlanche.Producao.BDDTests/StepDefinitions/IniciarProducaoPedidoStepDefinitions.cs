@@ -3,6 +3,7 @@ using Dotlanche.Producao.BDDTests.Drivers;
 using Dotlanche.Producao.BDDTests.Setup;
 using Dotlanche.Producao.Domain.Entities;
 using Dotlanche.Producao.WebApi.DTOs;
+using Dotlanche.Producao.WebApi.DTOs.Responses;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using System.Net.Http.Json;
@@ -12,7 +13,7 @@ using System.Text.Json.Serialization;
 namespace Dotlanche.Producao.BDDTests.StepDefinitions
 {
     [Binding]
-    public sealed class StartProducaoPedidoStepDefinitions : IDisposable
+    public sealed class IniciarProducaoPedidoStepDefinitions : IDisposable
     {
         private readonly HttpClient apiClient;
         private readonly IServiceScope scope;
@@ -21,7 +22,7 @@ namespace Dotlanche.Producao.BDDTests.StepDefinitions
         private StartProducaoPedidoRequest request;
         private StartProducaoPedidoResponse? response;
 
-        public StartProducaoPedidoStepDefinitions(WebApiFactory apiFactory)
+        public IniciarProducaoPedidoStepDefinitions(WebApiFactory apiFactory)
         {
             apiClient = apiFactory.CreateClient();
             scope = apiFactory.Services.CreateScope();

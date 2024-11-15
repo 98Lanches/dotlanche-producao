@@ -1,5 +1,6 @@
 ﻿using Dotlanche.Producao.Domain.Entities;
 using Dotlanche.Producao.WebApi.DTOs;
+using Dotlanche.Producao.WebApi.DTOs.Responses;
 
 namespace Dotlanche.Producao.WebApi.Mappers
 {

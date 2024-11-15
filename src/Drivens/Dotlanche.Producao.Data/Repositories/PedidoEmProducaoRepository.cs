@@ -30,6 +30,22 @@ namespace Dotlanche.Producao.Data.Repositories
 
             return novoPedido;
         }
+        public async Task<IEnumerable<PedidoEmProducao>> GetPedidosQueue()
+        {
+            var queueStatusIds = new[] { StatusProducaoPedido.Pronto, StatusProducaoPedido.EmPreparo, StatusProducaoPedido.Recebido };
+
+            var filter = Builders<PedidoEmProducao>.Filter.In(p => p.Status, queueStatusIds);
+            var sort = Builders<PedidoEmProducao>.Sort
+                .Descending(p => p.Status)
+                .Ascending(p => p.CreationTime);
+
+            var pedidos = await _pedidosCollection
+                .Find(filter)
+                .Sort(sort)
+                .ToListAsync();
+
+            return pedidos;
+        }
 
         private async Task<int> GetNextQueueKey()
         {

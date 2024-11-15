@@ -1,7 +1,8 @@
-﻿using Dotlanche.Producao.Application.UseCases;
+﻿using Dotlanche.Producao.Application.UseCases.Interfaces;
 using Dotlanche.Producao.Domain.Entities;
 using Dotlanche.Producao.Domain.ValueObjects;
 using Dotlanche.Producao.WebApi.DTOs;
+using Dotlanche.Producao.WebApi.DTOs.Responses;
 using Dotlanche.Producao.WebApi.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,8 +22,8 @@ namespace Dotlanche.Producao.WebApi.Controllers
         /// <summary>
         /// Inicia a produção de um pedido
         /// </summary>
-        /// <param name="pedido">Dados do pedido aceito</param>
-        /// <returns see cref="StartProducaoPedidoResponse">Dados do pedido em produção</returns>
+        /// <param name="request">Dados do pedido aceito</param>
+        /// <returns seecref="StartProducaoPedidoResponse">Dados do pedido em produção</returns>
         [HttpPost]
         [ProducesResponseType<StartProducaoPedidoResponse>(StatusCodes.Status201Created)]
         [ProducesResponseType<ValidationProblemDetails>(StatusCodes.Status400BadRequest)]

@@ -1,4 +1,5 @@
 ﻿using Dotlanche.Producao.Application.UseCases;
+using Dotlanche.Producao.Application.UseCases.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
 
@@ -10,6 +11,7 @@ namespace Dotlanche.Producao.Application.DependencyInjection
         public static IServiceCollection AddUseCases(this IServiceCollection services)
         {
             services.AddScoped<IIniciarProducaoPedidoUseCase, IniciarProducaoPedidoUseCase>();
+            services.AddScoped<IObterFilaPedidosUseCase, ObterFilaPedidosUseCase>();
 
             return services;
         }
