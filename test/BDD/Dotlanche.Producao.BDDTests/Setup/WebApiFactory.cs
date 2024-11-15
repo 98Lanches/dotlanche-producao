@@ -27,7 +27,7 @@ namespace Dotlanche.Producao.BDDTests.Setup
             builder.UseEnvironment("Development");
         }
 
-        private IServiceCollection ConfigureInMemoryMongoDb(IServiceCollection services)
+        private static IServiceCollection ConfigureInMemoryMongoDb(IServiceCollection services)
         {
             var mongoClientServiceDescriptor = services.Single(x => x.ServiceType == typeof(MongoClient));
             var mongoDatabaseServiceDescriptor = services.Single(x => x.ServiceType == typeof(IMongoDatabase));

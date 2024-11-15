@@ -37,7 +37,7 @@ namespace Dotlanche.Producao.Data.Repositories
         public async Task<PedidoEmProducao?> GetById(Guid idPedido)
         {
             var items = await _pedidosCollection.FindAsync(x => x.Id == idPedido);
-            return items.SingleOrDefault();
+            return await items.SingleOrDefaultAsync();
         }
 
         public async Task<IEnumerable<PedidoEmProducao>> GetPedidosQueue()
