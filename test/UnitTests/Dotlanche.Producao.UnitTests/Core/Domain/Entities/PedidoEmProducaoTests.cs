@@ -19,12 +19,51 @@ namespace Dotlanche.Producao.UnitTests.Core.Domain.Entities
              );
 
             // Act
-            var pedidoEmProducao = new PedidoEmProducao(pedidoConfirmado, combosProdutos);
+            var pedidoEmProducao = new PedidoEmProducao(pedidoConfirmado.Id, combosProdutos);
 
             // Assert
             pedidoEmProducao.Status.Should().Be(StatusProducaoPedido.Recebido);
             pedidoEmProducao.CreationTime.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(1));
             pedidoEmProducao.LastUpdateTime.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(1));
+        }
+
+        [Test]
+        public void Constructor_WhenComboListIsEmpty_ShouldThrowValidationException()
+        {
+            // Arrange
+            var pedidoConfirmado = new PedidoConfirmado(
+                id: Guid.NewGuid(),
+                combos: []
+             );
+
+            // Act
+            var creation = () => new PedidoEmProducao(pedidoConfirmado.Id, []);
+
+            // Assert
+            creation
+                .Should()
+                .Throw<DomainValidationException>()
+                .WithMessage("invalid value for Combos!");
+        }
+
+        [Test]
+        public void Constructor_WhenPedidoIdIsInvalid_ShouldThrowValidationException()
+        {
+            // Arrange
+            var combosProdutos = new AutoFaker<ComboProdutos>().Generate(2);
+            var pedidoConfirmado = new PedidoConfirmado(
+                id: Guid.Empty,
+                combos: combosProdutos.Select(x => new ComboAceito(x.Id, x.Produtos.Select(x => x.Id)))
+             );
+
+            // Act
+            var creation = () => new PedidoEmProducao(pedidoConfirmado.Id, combosProdutos);
+
+            // Assert
+            creation
+                .Should()
+                .Throw<DomainValidationException>()
+                .WithMessage("invalid value for Id!");
         }
 
         [Test]
@@ -37,7 +76,7 @@ namespace Dotlanche.Producao.UnitTests.Core.Domain.Entities
                 combos: combosProdutos.Select(x => new ComboAceito(x.Id, x.Produtos.Select(x => x.Id)))
              );
 
-            var pedidoEmProducao = new PedidoEmProducao(pedidoConfirmado, combosProdutos);
+            var pedidoEmProducao = new PedidoEmProducao(pedidoConfirmado.Id, combosProdutos);
             pedidoEmProducao.UpdateQueueKey(5);
 
             // Act
@@ -64,7 +103,7 @@ namespace Dotlanche.Producao.UnitTests.Core.Domain.Entities
                 combos: combosProdutos.Select(x => new ComboAceito(x.Id, x.Produtos.Select(x => x.Id)))
              );
 
-            var pedidoEmProducao = new PedidoEmProducao(pedidoConfirmado, combosProdutos);
+            var pedidoEmProducao = new PedidoEmProducao(pedidoConfirmado.Id, combosProdutos);
             // Advance until current status
             for (int i = 0; i < (int)currentStatus; i++)
                 pedidoEmProducao.AdvanceToNextStatus();
@@ -87,7 +126,7 @@ namespace Dotlanche.Producao.UnitTests.Core.Domain.Entities
                 combos: combosProdutos.Select(x => new ComboAceito(x.Id, x.Produtos.Select(x => x.Id)))
              );
 
-            var pedidoEmProducao = new PedidoEmProducao(pedidoConfirmado, combosProdutos);
+            var pedidoEmProducao = new PedidoEmProducao(pedidoConfirmado.Id, combosProdutos);
             switch (status)
             {
                 case StatusProducaoPedido.Finalizado:
@@ -120,7 +159,7 @@ namespace Dotlanche.Producao.UnitTests.Core.Domain.Entities
                 combos: combosProdutos.Select(x => new ComboAceito(x.Id, x.Produtos.Select(x => x.Id)))
              );
 
-            var pedidoEmProducao = new PedidoEmProducao(pedidoConfirmado, combosProdutos);
+            var pedidoEmProducao = new PedidoEmProducao(pedidoConfirmado.Id, combosProdutos);
             for (int i = 0; i < (int)StatusProducaoPedido.Finalizado; i++)
                 pedidoEmProducao.AdvanceToNextStatus();
 

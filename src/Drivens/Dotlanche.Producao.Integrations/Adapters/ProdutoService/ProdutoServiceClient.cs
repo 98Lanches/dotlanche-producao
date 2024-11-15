@@ -17,7 +17,7 @@ namespace Dotlanche.Producao.Integrations.Adapters.ProdutoService
 
         public async Task<IEnumerable<Produto>> GetByIds(IEnumerable<Guid> ids, CancellationToken cancellationToken = default)
         {
-            const string getProductsByIdsUrl = "/produtos";
+            const string getProductsByIdsUrl = "/produto";
 
             var response = await client.GetAsync(getProductsByIdsUrl, cancellationToken);
 

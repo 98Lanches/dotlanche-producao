@@ -94,43 +94,43 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
  await testRunner.GivenAsync("um pedido confirmado com id da753f8c-3871-49a1-a55f-c0404bc609bb", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dado ");
 #line hidden
-                global::Reqnroll.Table table1 = new global::Reqnroll.Table(new string[] {
+                global::Reqnroll.Table table3 = new global::Reqnroll.Table(new string[] {
                             "Id",
                             "Name",
                             "Categoria",
                             "Price"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "e8cb19fa-bc00-4f66-83fc-b60fe9b5c9f7",
                             "Hambúrguer",
                             "Lanches",
                             "9,99"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "d9785d54-a0ea-4b99-a8c5-acb627f94c36",
                             "Batata Frita",
                             "Acompanhamento",
                             "5,99"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "04e5850f-3cdd-40ad-9a63-2876fe270e6b",
                             "Coca-Cola",
                             "Bebida",
                             "5,99"});
 #line 5
- await testRunner.AndAsync("os seguintes produtos existam no servico de produto:", ((string)(null)), table1, "E ");
+ await testRunner.AndAsync("os seguintes produtos existam no servico de produto:", ((string)(null)), table3, "E ");
 #line hidden
-                global::Reqnroll.Table table2 = new global::Reqnroll.Table(new string[] {
+                global::Reqnroll.Table table4 = new global::Reqnroll.Table(new string[] {
                             "ComboId",
                             "ProdutoId"});
-                table2.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "16d8ddb9-b0d7-4b5e-939f-5ca529a7aaff",
                             "e8cb19fa-bc00-4f66-83fc-b60fe9b5c9f7"});
-                table2.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "16d8ddb9-b0d7-4b5e-939f-5ca529a7aaff",
                             "d9785d54-a0ea-4b99-a8c5-acb627f94c36"});
-                table2.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "16d8ddb9-b0d7-4b5e-939f-5ca529a7aaff",
                             "04e5850f-3cdd-40ad-9a63-2876fe270e6b"});
 #line 10
- await testRunner.AndAsync("o pedido possui os seguintes combos:", ((string)(null)), table2, "E ");
+ await testRunner.AndAsync("o pedido possui os seguintes combos:", ((string)(null)), table4, "E ");
 #line hidden
 #line 15
  await testRunner.WhenAsync("eu solicitar o inicio da producao do pedido", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");

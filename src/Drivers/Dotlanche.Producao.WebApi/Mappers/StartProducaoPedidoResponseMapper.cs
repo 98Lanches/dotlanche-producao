@@ -1,5 +1,6 @@
 ﻿using Dotlanche.Producao.Domain.Entities;
 using Dotlanche.Producao.WebApi.DTOs;
+using Dotlanche.Producao.WebApi.DTOs.Responses;
 
 namespace Dotlanche.Producao.WebApi.Mappers
 {
@@ -10,6 +11,7 @@ namespace Dotlanche.Producao.WebApi.Mappers
             var response = new StartProducaoPedidoResponse()
             {
                 Success = true,
+                PedidoId = pedidoEmProducao.Id,
                 QueueKey = pedidoEmProducao.QueueKey,
                 Status = pedidoEmProducao.Status,
                 Combos = pedidoEmProducao.Combos

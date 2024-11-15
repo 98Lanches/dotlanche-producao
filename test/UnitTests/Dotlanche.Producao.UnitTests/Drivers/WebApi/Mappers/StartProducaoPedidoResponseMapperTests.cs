@@ -15,7 +15,7 @@ namespace Dotlanche.Producao.UnitTests.Drivers.WebApi.Mappers
             var produtos = new AutoFaker<Produto>().Generate(3);
             var comboId = Guid.NewGuid();
             var pedidoConfirmado = new PedidoConfirmado(Guid.NewGuid(), [new ComboAceito(comboId, produtos.Select(x => x.Id))]);
-            var pedidoEmProducao = new PedidoEmProducao(pedidoConfirmado, [new ComboProdutos(comboId, produtos)]);
+            var pedidoEmProducao = new PedidoEmProducao(pedidoConfirmado.Id, [new ComboProdutos(comboId, produtos)]);
             pedidoEmProducao.UpdateQueueKey(4);
 
             // Act

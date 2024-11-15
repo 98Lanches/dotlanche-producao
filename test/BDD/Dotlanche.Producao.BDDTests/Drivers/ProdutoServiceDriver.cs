@@ -25,7 +25,7 @@ namespace Dotlanche.Producao.BDDTests.Drivers
             produtoServiceServerMock
                 .Given(
                     Request.Create()
-                    .WithPath("/produtos")
+                    .WithPath("/produto")
                  )
                 .RespondWith(
                     Response.Create()

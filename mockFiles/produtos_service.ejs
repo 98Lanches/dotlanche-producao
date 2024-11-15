@@ -1,0 +1,34 @@
+{
+  "port": 8002,
+  "protocol": "http",
+  "stubs": [
+    {
+      "predicates": [
+        {
+          "equals": {
+            "method": "GET",
+            "path": "/produto"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 200,
+            "headers": {
+              "Content-Type": "application/json; charset=utf-8"
+            },
+            "body": "[{\"Id\":\"e8cb19fa-bc00-4f66-83fc-b60fe9b5c9f7\",\"Name\":\"Hambúrguer\",\"Categoria\":\"Lanches\",\"Price\":9.99},{\"Id\":\"d9785d54-a0ea-4b99-a8c5-acb627f94c36\",\"Name\":\"Batata Frita\",\"Categoria\":\"Acompanhamento\",\"Price\":5.99},{\"Id\":\"04e5850f-3cdd-40ad-9a63-2876fe270e6b\",\"Name\":\"Coca-Cola\",\"Categoria\":\"Bebida\",\"Price\":5.99}]"
+          }
+        }
+      ]
+    },
+    {
+      "responses": [
+        {
+          "is": { "statusCode": 404 }
+        }
+      ]
+    }
+  ]
+}
