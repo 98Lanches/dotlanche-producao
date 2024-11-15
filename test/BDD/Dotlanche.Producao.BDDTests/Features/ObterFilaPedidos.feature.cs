@@ -133,24 +133,31 @@ this.ScenarioInitialize(scenarioInfo);
  await testRunner.WhenAsync("eu solicitar a fila de pedidos em producao", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
 #line hidden
                 global::Reqnroll.Table table6 = new global::Reqnroll.Table(new string[] {
+                            "pedidoId",
                             "QueueKey",
                             "Status"});
                 table6.AddRow(new string[] {
+                            "b645406e-aba7-4206-8c68-6927d31eb13a",
                             "1",
                             "Pronto"});
                 table6.AddRow(new string[] {
+                            "39b66a58-8e2d-42d3-bde3-d16bd5282b6c",
                             "5",
                             "Pronto"});
                 table6.AddRow(new string[] {
+                            "4ecb63c5-45a3-4171-b3fb-80cbf065c3bb",
                             "2",
                             "EmPreparo"});
                 table6.AddRow(new string[] {
+                            "8abea682-b18c-4a83-8c01-86a8b60c87cc",
                             "6",
                             "EmPreparo"});
                 table6.AddRow(new string[] {
+                            "e516249a-93bc-439a-b004-0bf15e42c3ad",
                             "3",
                             "Recebido"});
                 table6.AddRow(new string[] {
+                            "21257157-99de-4675-93a0-b4210821fd8b",
                             "4",
                             "Recebido"});
 #line 13
@@ -204,12 +211,15 @@ this.ScenarioInitialize(scenarioInfo);
  await testRunner.WhenAsync("eu solicitar a fila de pedidos em producao", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
 #line hidden
                 global::Reqnroll.Table table8 = new global::Reqnroll.Table(new string[] {
+                            "pedidoId",
                             "QueueKey",
                             "Status"});
                 table8.AddRow(new string[] {
+                            "d7b4a407-77c9-4d03-aa77-0af01302e7ee",
                             "2",
                             "EmPreparo"});
                 table8.AddRow(new string[] {
+                            "c5b32602-1260-4a0a-8c74-939d1a57a71b",
                             "6",
                             "EmPreparo"});
 #line 29
@@ -263,12 +273,15 @@ this.ScenarioInitialize(scenarioInfo);
  await testRunner.WhenAsync("eu solicitar a fila de pedidos em producao", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
 #line hidden
                 global::Reqnroll.Table table10 = new global::Reqnroll.Table(new string[] {
+                            "pedidoId",
                             "QueueKey",
                             "Status"});
                 table10.AddRow(new string[] {
+                            "4c50c1cb-df56-41d8-bb68-63f104d10a80",
                             "2",
                             "EmPreparo"});
                 table10.AddRow(new string[] {
+                            "a977e674-6806-496e-8305-39fde8418a48",
                             "6",
                             "EmPreparo"});
 #line 41
@@ -307,6 +320,7 @@ this.ScenarioInitialize(scenarioInfo);
  await testRunner.WhenAsync("eu solicitar a fila de pedidos em producao", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
 #line hidden
                 global::Reqnroll.Table table12 = new global::Reqnroll.Table(new string[] {
+                            "pedidoId",
                             "QueueKey",
                             "Status"});
 #line 50

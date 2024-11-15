@@ -29,6 +29,7 @@ namespace Dotlanche.Producao.WebApi.Controllers
             {
                 Items = queue.Select(x => new PedidoQueueItem()
                 {
+                    PedidoId = x.Id,
                     QueueKey = x.QueueKey,
                     Status = x.Status
                 })
