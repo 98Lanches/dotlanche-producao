@@ -10,8 +10,6 @@ namespace Dotlanche.Producao.BDDTests.Setup
 {
     public class WebApiFactory : WebApplicationFactory<Program>, IDisposable
     {
-        private IMongoRunner? mongoRunner;
-
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.ConfigureServices(services =>
@@ -36,7 +34,7 @@ namespace Dotlanche.Producao.BDDTests.Setup
             services.Remove(mongoClientServiceDescriptor);
             services.Remove(mongoDatabaseServiceDescriptor);
 
-            mongoRunner = MongoRunner.Run();
+            var mongoRunner = MongoRunner.Run();
 
             services.AddSingleton(provider => new MongoClient(mongoRunner.ConnectionString));
             services.AddSingleton(provider => provider.GetRequiredService<MongoClient>().GetDatabase("dotlanche-produto"));
@@ -46,7 +44,6 @@ namespace Dotlanche.Producao.BDDTests.Setup
 
         protected override void Dispose(bool disposing)
         {
-            mongoRunner?.Dispose();
             base.Dispose(disposing);
         }
     }

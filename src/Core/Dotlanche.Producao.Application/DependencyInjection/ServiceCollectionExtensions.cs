@@ -12,6 +12,7 @@ namespace Dotlanche.Producao.Application.DependencyInjection
         {
             services.AddScoped<IIniciarProducaoPedidoUseCase, IniciarProducaoPedidoUseCase>();
             services.AddScoped<IObterFilaPedidosUseCase, ObterFilaPedidosUseCase>();
+            services.AddScoped<IAtualizarStatusPedidoUseCase, AtualizarStatusPedidoUseCase>();
 
             return services;
         }

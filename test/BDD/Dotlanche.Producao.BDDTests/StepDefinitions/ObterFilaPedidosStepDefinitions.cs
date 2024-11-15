@@ -15,6 +15,7 @@ using System.Text.Json.Serialization;
 namespace Dotlanche.Producao.BDDTests.StepDefinitions
 {
     [Binding]
+    [Scope(Feature = "Obter fila de pedidos em produção")]
     public sealed class ObterFilaPedidosStepDefinitions : IDisposable
     {
         private readonly HttpClient apiClient;

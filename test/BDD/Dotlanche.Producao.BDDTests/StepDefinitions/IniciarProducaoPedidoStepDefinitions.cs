@@ -13,6 +13,7 @@ using System.Text.Json.Serialization;
 namespace Dotlanche.Producao.BDDTests.StepDefinitions
 {
     [Binding]
+    [Scope(Feature = "Iniciar Producao Pedido")]
     public sealed class IniciarProducaoPedidoStepDefinitions : IDisposable
     {
         private readonly HttpClient apiClient;

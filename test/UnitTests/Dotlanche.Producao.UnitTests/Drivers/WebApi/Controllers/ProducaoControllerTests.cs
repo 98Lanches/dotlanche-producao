@@ -2,6 +2,7 @@
 using Dotlanche.Producao.Application.UseCases.Interfaces;
 using Dotlanche.Producao.Domain.Entities;
 using Dotlanche.Producao.Domain.ValueObjects;
+using Dotlanche.Producao.UnitTests.Builders;
 using Dotlanche.Producao.WebApi.Controllers;
 using Dotlanche.Producao.WebApi.DTOs;
 using FluentAssertions;
@@ -23,7 +24,7 @@ namespace Dotlanche.Producao.UnitTests.Drivers.WebApi.Controllers
                 Combos = []
             };
 
-            var controller = new ProducaoController(Mock.Of<IIniciarProducaoPedidoUseCase>());
+            var controller = new ProducaoController(Mock.Of<IIniciarProducaoPedidoUseCase>(), Mock.Of<IAtualizarStatusPedidoUseCase>());
 
             // Act
             var actionResult = await controller.StartProducaoPedido(request);
@@ -43,24 +44,13 @@ namespace Dotlanche.Producao.UnitTests.Drivers.WebApi.Controllers
 
             var useCaseMock = new Mock<IIniciarProducaoPedidoUseCase>();
 
-            PedidoEmProducao pedidoEmProducao = new AutoFaker<PedidoEmProducao>()
-                .CustomInstantiator(f => 
-                    new PedidoEmProducao(
-                        id: f.Random.Guid(), 
-                        combosProdutos: new AutoFaker<ComboProdutos>().Generate(f.Random.Int(1,3)), 
-                        creationTime: f.Date.Recent(), 
-                        queueKey: f.Random.Int(1), 
-                        status: f.PickRandom<StatusProducaoPedido>(), 
-                        lastUpdateTime: f.Date.Recent()
-                        )
-                 )
-                .Generate();
+            var pedidoEmProducao = new PedidoEmProducaoBuilder().Generate();
 
             useCaseMock
                 .Setup(x => x.ExecuteAsync(It.IsAny<PedidoConfirmado>()))
                 .ReturnsAsync(pedidoEmProducao);
 
-            var controller = new ProducaoController(useCaseMock.Object);
+            var controller = new ProducaoController(useCaseMock.Object, Mock.Of<IAtualizarStatusPedidoUseCase>());
 
             // Act
             var actionResult = await controller.StartProducaoPedido(request);

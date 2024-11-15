@@ -6,5 +6,7 @@ namespace Dotlanche.Producao.Domain.Repositories
     {
         Task<PedidoEmProducao> Add(PedidoEmProducao novoPedido);
         Task<IEnumerable<PedidoEmProducao>> GetPedidosQueue();
+        Task<PedidoEmProducao> Update(PedidoEmProducao pedido);
+        Task<PedidoEmProducao?> GetById(Guid idPedido);
     }
 }

@@ -59,6 +59,12 @@ namespace Dotlanche.Producao.Domain.Entities
             LastUpdateTime = DateTime.Now;
         }
 
+        public void UpdateStatus(StatusProducaoPedido newStatus)
+        {
+            Status = newStatus;
+            LastUpdateTime = DateTime.Now;
+        }
+
         public void UpdateQueueKey(int newQueueKey)
         {
             if (newQueueKey < QueueKey)

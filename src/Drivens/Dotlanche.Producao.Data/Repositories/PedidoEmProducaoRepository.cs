@@ -1,4 +1,5 @@
 ﻿using Dotlanche.Producao.Data.DTOs;
+using Dotlanche.Producao.Data.Exceptions;
 using Dotlanche.Producao.Domain.Entities;
 using Dotlanche.Producao.Domain.Repositories;
 using MongoDB.Driver;
@@ -30,6 +31,13 @@ namespace Dotlanche.Producao.Data.Repositories
 
             return novoPedido;
         }
+
+        public async Task<PedidoEmProducao?> GetById(Guid idPedido)
+        {
+            var items = await _pedidosCollection.FindAsync(x => x.Id == idPedido);
+            return items.SingleOrDefault();
+        }
+
         public async Task<IEnumerable<PedidoEmProducao>> GetPedidosQueue()
         {
             var queueStatusIds = new[] { StatusProducaoPedido.Pronto, StatusProducaoPedido.EmPreparo, StatusProducaoPedido.Recebido };
@@ -45,6 +53,17 @@ namespace Dotlanche.Producao.Data.Repositories
                 .ToListAsync();
 
             return pedidos;
+        }
+
+        public async Task<PedidoEmProducao> Update(PedidoEmProducao pedido)
+        {
+            var filter = Builders<PedidoEmProducao>.Filter.Eq(p => p.Id, pedido.Id);
+            var result = await _pedidosCollection.ReplaceOneAsync(filter, pedido);
+
+            if (result.MatchedCount == 0)
+                throw new EntityNotFoundException();
+
+            return pedido;
         }
 
         private async Task<int> GetNextQueueKey()
