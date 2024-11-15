@@ -1,5 +1,4 @@
-﻿using Dotlanche.Producao.Data.DTOs;
-using Dotlanche.Producao.Data.Exceptions;
+﻿using Dotlanche.Producao.Data.Exceptions;
 using Dotlanche.Producao.Domain.Entities;
 using Dotlanche.Producao.Domain.Repositories;
 using MongoDB.Driver;
@@ -10,15 +9,12 @@ namespace Dotlanche.Producao.Data.Repositories
     public class PedidoEmProducaoRepository : IPedidoEmProducaoRepository
     {
         public const string pedidosCollection = "PedidosEmProducao";
-        public const string keysCollection = "QueueKeyControl";
 
         private readonly IMongoCollection<PedidoEmProducao> _pedidosCollection;
-        private readonly IMongoCollection<QueueControl> _keysCollection;
 
         public PedidoEmProducaoRepository(IMongoDatabase database)
         {
             _pedidosCollection = database.GetCollection<PedidoEmProducao>(pedidosCollection);
-            _keysCollection = database.GetCollection<QueueControl>(keysCollection);
         }
 
         public async Task<PedidoEmProducao> Add(PedidoEmProducao novoPedido)
@@ -26,8 +22,14 @@ namespace Dotlanche.Producao.Data.Repositories
             var queueKeyForPedido = await GetNextQueueKey();
             novoPedido.UpdateQueueKey(queueKeyForPedido);
 
-            await _keysCollection.InsertOneAsync(new QueueControl(novoPedido.QueueKey));
-            await _pedidosCollection.InsertOneAsync(novoPedido);
+            try
+            {
+                await _pedidosCollection.InsertOneAsync(novoPedido);
+            }
+            catch (Exception e)
+            {
+                throw new DatabaseException("An error occurred while adding new PedidoEmProducao", e);
+            }
 
             return novoPedido;
         }
@@ -68,10 +70,14 @@ namespace Dotlanche.Producao.Data.Repositories
 
         private async Task<int> GetNextQueueKey()
         {
-            var lastKey = await _keysCollection.AsQueryable().FirstOrDefaultAsync()
-                ?? QueueControl.GetInitialQueueKey();
-
-            return lastKey.QueueKey + 1;
+            var lastKey = await _pedidosCollection
+                .Find(_ => true)
+                .SortByDescending(p => p.QueueKey)
+                .Limit(1)
+                .Project(x => x.QueueKey)
+                .FirstOrDefaultAsync();
+                
+            return lastKey + 1;
         }
     }
 }

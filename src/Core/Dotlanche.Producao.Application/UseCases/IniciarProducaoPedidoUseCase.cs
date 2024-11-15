@@ -21,6 +21,10 @@ public class IniciarProducaoPedidoUseCase : IIniciarProducaoPedidoUseCase
 
     public async Task<PedidoEmProducao> ExecuteAsync(PedidoConfirmado pedidoConfirmado)
     {
+        var pedidoInDabatase = await repository.GetById(pedidoConfirmado.Id);
+        if (pedidoInDabatase is not null)
+            throw new UseCaseException($"Pedido {pedidoConfirmado.Id} already started");
+
         var combos = await GetCombosProdutosFromPedidoAceito(pedidoConfirmado);
 
         var newProdutoEmProducao = PedidoEmProducao.StartNew(pedidoConfirmado, combos);

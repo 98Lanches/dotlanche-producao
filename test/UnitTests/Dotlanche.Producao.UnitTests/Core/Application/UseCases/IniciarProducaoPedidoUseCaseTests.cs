@@ -5,6 +5,7 @@ using Dotlanche.Producao.Application.UseCases.Interfaces;
 using Dotlanche.Producao.Domain.Entities;
 using Dotlanche.Producao.Domain.Ports;
 using Dotlanche.Producao.Domain.Repositories;
+using Dotlanche.Producao.UnitTests.Builders;
 using FluentAssertions;
 using Moq;
 
@@ -123,6 +124,27 @@ namespace Dotlanche.Producao.UnitTests.Core.Application.UseCases
             await call.Should()
                 .ThrowAsync<UseCaseException>()
                 .WithMessage($"Produto {inexistentProduto} not found!");
+        }
+
+        [Test]
+        public async Task ExecuteAsync_WhenPedidoHasAlreadyBeenSentToProducao_ShouldThrowUseCaseException()
+        {
+            // Arrange
+            var pedidoConfirmado = new AutoFaker<PedidoConfirmado>().Generate();
+
+            var repositoryMock = new Mock<IPedidoEmProducaoRepository>();
+            var existingPedido = new PedidoEmProducaoBuilder().WithPedidoId(pedidoConfirmado.Id).Generate();
+            repositoryMock.Setup(x => x.GetById(pedidoConfirmado.Id)).ReturnsAsync(existingPedido);
+
+            var useCase = new IniciarProducaoPedidoUseCase(repositoryMock.Object, Mock.Of<IProdutoServiceClient>());
+
+            // Act
+            var call = () => useCase.ExecuteAsync(pedidoConfirmado);
+
+            // Assert
+            await call.Should()
+                .ThrowAsync<UseCaseException>()
+                .WithMessage($"Pedido {pedidoConfirmado.Id} already started");
         }
     }
 }
