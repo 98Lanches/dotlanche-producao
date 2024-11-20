@@ -14,7 +14,7 @@ namespace Dotlanche.Producao.Data.DependencyInjection
         public static IServiceCollection AddMongoDatabase(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSingleton(provider => new MongoClient(configuration.GetConnectionString("DefaultConnection")));
-            services.AddSingleton(provider => provider.GetRequiredService<MongoClient>().GetDatabase("dotlanche-produto"));
+            services.AddSingleton(provider => provider.GetRequiredService<MongoClient>().GetDatabase(configuration.GetSection("MongoDb:DatabaseName").Value));
 
             RegisterConventions();
 
