@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="Dotlanche.Producao.BDDTests" />
+    <InternalsVisibleTo Include="Dotlanche.Producao.UnitTests" />
+  </ItemGroup>
+
 </Project>

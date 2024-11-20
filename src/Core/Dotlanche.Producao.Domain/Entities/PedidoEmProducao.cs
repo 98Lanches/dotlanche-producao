@@ -5,22 +5,36 @@ namespace Dotlanche.Producao.Domain.Entities
 {
     public class PedidoEmProducao
     {
-        public PedidoEmProducao(PedidoConfirmado pedidoConfirmado,
-                                IEnumerable<ComboProdutos> combosProdutos)
+        internal PedidoEmProducao(Guid idPedidoConfirmado, IEnumerable<ComboProdutos> combosProdutos)
         {
-            Id = pedidoConfirmado.Id;
+            Id = idPedidoConfirmado;
             Combos = combosProdutos;
+
+            ValidateEntity();
+
             Status = StatusProducaoPedido.Recebido;
 
             CreationTime = DateTime.Now;
             LastUpdateTime = DateTime.Now;
         }
 
-        public readonly Guid Id;
+        internal PedidoEmProducao(Guid id, IEnumerable<ComboProdutos> combosProdutos, DateTime creationTime, int queueKey, StatusProducaoPedido status, DateTime lastUpdateTime)
+        {
+            Id = id;
+            Combos = combosProdutos;
+            CreationTime = creationTime;
+            QueueKey = queueKey;
+            Status = status;
+            LastUpdateTime = lastUpdateTime;
 
-        public readonly IEnumerable<ComboProdutos> Combos;
+            ValidateEntity();
+        }
 
-        public readonly DateTime CreationTime;
+        public Guid Id { get; private set; }
+
+        public IEnumerable<ComboProdutos> Combos { get; private set; }
+
+        public DateTime CreationTime { get; private set; }
 
         public int QueueKey { get; private set; }
 
@@ -45,9 +59,15 @@ namespace Dotlanche.Producao.Domain.Entities
             LastUpdateTime = DateTime.Now;
         }
 
+        public void UpdateStatus(StatusProducaoPedido newStatus)
+        {
+            Status = newStatus;
+            LastUpdateTime = DateTime.Now;
+        }
+
         public void UpdateQueueKey(int newQueueKey)
         {
-            if(newQueueKey < QueueKey)
+            if (newQueueKey < QueueKey)
                 throw new BusinessException("Cannot use old queue key for this pedido!");
 
             QueueKey = newQueueKey;
@@ -55,10 +75,24 @@ namespace Dotlanche.Producao.Domain.Entities
 
         public void Cancel()
         {
-            if(Status == StatusProducaoPedido.Finalizado)
+            if (Status == StatusProducaoPedido.Finalizado)
                 throw new BusinessException("Cannot cancel a pedido finalizado!");
 
             Status = StatusProducaoPedido.Cancelado;
+        }
+
+        public static PedidoEmProducao StartNew(PedidoConfirmado pedidoConfirmado, IEnumerable<ComboProdutos> comboProdutos)
+        {
+            return new(pedidoConfirmado.Id, comboProdutos);
+        }
+
+        private void ValidateEntity()
+        {
+            if (!Combos.Any())
+                throw new DomainValidationException(nameof(Combos));
+
+            if (Id == Guid.Empty)
+                throw new DomainValidationException(nameof(Id));
         }
     }
 }

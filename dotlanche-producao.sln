@@ -52,6 +52,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".kubernetes", ".kubernetes"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dotlanche.Producao.Integrations", "src\Drivens\Dotlanche.Producao.Integrations\Dotlanche.Producao.Integrations.csproj", "{AC7B1ACF-A20F-4D27-A16B-825130CCEE1E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mockFiles", "mockFiles", "{6C976D44-19B0-499D-97B3-03664F29086E}"
+	ProjectSection(SolutionItems) = preProject
+		mockFiles\imposters.ejs = mockFiles\imposters.ejs
+		mockFiles\produtos_service.ejs = mockFiles\produtos_service.ejs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +111,7 @@ Global
 		{F5F01254-97DB-4CAC-AF90-F82DEE5309D7} = {AB7EFD19-7116-4DAB-9219-954895C200D6}
 		{F7116C22-47DB-4555-A2E0-1DD3F79F6666} = {9B56F62E-CD5D-4C33-B43B-5361E74A69FA}
 		{AC7B1ACF-A20F-4D27-A16B-825130CCEE1E} = {182EF4B5-C954-4A5D-ADA9-7B78A618470F}
+		{6C976D44-19B0-499D-97B3-03664F29086E} = {9B56F62E-CD5D-4C33-B43B-5361E74A69FA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6ECDB785-EB23-41CA-921B-B5776B7E7132}

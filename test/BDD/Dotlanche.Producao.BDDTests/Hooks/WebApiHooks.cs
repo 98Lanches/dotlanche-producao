@@ -5,11 +5,11 @@ namespace Dotlanche.Producao.BDDTests.Hooks
     [Binding]
     public class WebApiHooks
     {
-        [BeforeFeature]
-        public static void BeforeFeature(FeatureContext featureContext) 
+        [BeforeTestRun]
+        public static void BeforeFeature(DefaultTestRunContext testRunContext) 
         {
             var webApi = new WebApiFactory();
-            featureContext.FeatureContainer.RegisterInstanceAs(webApi, dispose: true);
+            testRunContext.TestRunContainer.RegisterInstanceAs(webApi, dispose: true);
         }
     }
 }

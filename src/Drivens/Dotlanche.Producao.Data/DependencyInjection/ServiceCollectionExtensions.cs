@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 
@@ -27,12 +26,7 @@ namespace Dotlanche.Producao.Data.DependencyInjection
         private static void RegisterConventions()
         {
             BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
-
-            var pack = new ConventionPack
-            {
-                new EnumRepresentationConvention(BsonType.String),
-            };
-            ConventionRegistry.Register("DotlancheConventions", pack, t => true);
+            BsonSerializer.RegisterSerializer(new DateTimeSerializer(DateTimeKind.Local));
         }
     }
 }
