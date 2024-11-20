@@ -12,7 +12,6 @@ env:
   AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
   AWS_REGION: us-east-1
   AWS_CLUSTER_NAME: ${{ secrets.AWS_CLUSTER_NAME }}
-  POSTGRESQL_CONNECTIONSTRING: ${{ secrets.POSTGRESQL_CONNECTIONSTRING }} 
 
 jobs:
   deploy:
@@ -57,7 +56,8 @@ jobs:
         files: '[".kubernetes/*.yaml"]'
       env:
         APP_IMAGE: ${{ steps.meta.outputs.tags }}
-        CONNECTION_STRING: ${{ secrets.DATABASE_CONNECTIONSTRING }}
+        DATABASE_NAME: ${{ vars.PRODUCAO_DATABASE_NAME }}
+        CONNECTION_STRING: mongodb+srv://${{ vars.PRODUCAO_DB_USER }}:${{ secrets.PRODUCAO_DB_PASSWORD }}@${{ vars.ATLAS_HOST }}/?retryWrites=true&w=majority&appName=dotlanches-db-cluster
 
     - name: AWS Cli login
       uses: aws-actions/configure-aws-credentials@v1

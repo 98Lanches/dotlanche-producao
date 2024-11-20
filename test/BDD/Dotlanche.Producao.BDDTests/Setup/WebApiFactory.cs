@@ -39,7 +39,7 @@ namespace Dotlanche.Producao.BDDTests.Setup
             mongoRunner = MongoRunner.Run();
 
             services.AddSingleton(provider => new MongoClient(mongoRunner.ConnectionString));
-            services.AddSingleton(provider => provider.GetRequiredService<MongoClient>().GetDatabase("dotlanche-produto"));
+            services.AddSingleton(provider => provider.GetRequiredService<MongoClient>().GetDatabase("dotlanche-producao"));
 
             return services;
         }

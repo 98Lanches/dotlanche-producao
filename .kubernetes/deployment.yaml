@@ -41,6 +41,8 @@ spec:
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: Production
+            - name: MongoDb__DatabaseName
+              value: "#{DATABASE_NAME}#"
             - name: ConnectionStrings__DefaultConnection
               valueFrom:
                 secretKeyRef: 
