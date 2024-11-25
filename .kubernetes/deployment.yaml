@@ -43,6 +43,8 @@ spec:
               value: Production
             - name: MongoDb__DatabaseName
               value: "#{DATABASE_NAME}#"
+            - name: Integrations__ProdutoService__BaseAddress
+              value: http://dotlanche-produto-svc
             - name: ConnectionStrings__DefaultConnection
               valueFrom:
                 secretKeyRef: 

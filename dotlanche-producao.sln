@@ -46,6 +46,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".kubernetes", ".kubernetes"
 	ProjectSection(SolutionItems) = preProject
 		.kubernetes\deployment.yaml = .kubernetes\deployment.yaml
 		.kubernetes\hpa.yaml = .kubernetes\hpa.yaml
+		.kubernetes\ingress.yaml = .kubernetes\ingress.yaml
 		.kubernetes\secrets.yaml = .kubernetes\secrets.yaml
 		.kubernetes\service.yaml = .kubernetes\service.yaml
 	EndProjectSection
