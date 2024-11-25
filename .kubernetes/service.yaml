@@ -3,10 +3,9 @@ kind: Service
 metadata:
   name: dotlanche-producao-svc
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: dotlanche-producao
   ports:
     - port: 80
       targetPort: 8080
-      nodePort: 30002
