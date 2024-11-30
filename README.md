@@ -1,6 +1,6 @@
 # 🏭 Dotlanches Produção
 
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=98Lanches_dotlanche-producao&metric=coverage)](https://sonarcloud.io/summary/new_code?id=98Lanches_dotlanche-pagamento)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=98Lanches_dotlanche-producao&metric=coverage)](https://sonarcloud.io/summary/new_code?id=98Lanches_dotlanche-producao)
 
 Microsserviço de Produção Dotlanche. Responsável pela inicialização da produção de um pedido, por disponibilizar a fila de produção dos pedidos e também pela atualização dos status dos pedidos.
 
@@ -21,7 +21,7 @@ Microsserviço de Produção Dotlanche. Responsável pela inicialização da pro
 - GitHub Actions
 
 # Arquitetura do Sistema
-O serviço foi construído utilizando arquitetura hexagonal para organização interna. O banco de dados selecionado foi o MongoDB pela escalabilidade e performance de escrita.
+O Serviço é uma WebApi com alguns endpoints síncronos. Foi construído utilizando arquitetura hexagonal para organização interna. O banco de dados selecionado foi o MongoDB pela escalabilidade e performance de escrita.
 
 # Como executar o projeto
 
