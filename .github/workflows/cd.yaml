@@ -69,6 +69,7 @@ jobs:
   deploy:
     name: Deploy to EKS
     runs-on: ubuntu-latest
+    needs: build-sonar
     permissions:
       packages: write
       contents: read
