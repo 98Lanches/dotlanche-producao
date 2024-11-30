@@ -110,8 +110,8 @@ this.ScenarioInitialize(scenarioInfo);
  await testRunner.GivenAsync("os seguintes pedidos estão cadastrados:", ((string)(null)), table1, "Dados ");
 #line hidden
 #line 8
- await testRunner.WhenAsync(("eu solicitar a atualização do pedido id 4ecb63c5-45a3-4171-b3fb-80cbf065c3bb para" +
-                        " o status Pronto"), ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
+ await testRunner.WhenAsync("eu solicitar a atualização do pedido id 4ecb63c5-45a3-4171-b3fb-80cbf065c3bb para" +
+                        " o status Pronto", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
 #line hidden
 #line 9
  await testRunner.ThenAsync("deve atualizar o status do pedido", ((string)(null)), ((global::Reqnroll.Table)(null)), "Então ");
@@ -159,8 +159,8 @@ this.ScenarioInitialize(scenarioInfo);
  await testRunner.GivenAsync("os seguintes pedidos estão cadastrados:", ((string)(null)), table2, "Dados ");
 #line hidden
 #line 17
- await testRunner.WhenAsync(("eu solicitar a atualização do pedido id 8abea682-b18c-4a83-8c01-86a8b60c87cc para" +
-                        " o status Pronto"), ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
+ await testRunner.WhenAsync("eu solicitar a atualização do pedido id 8abea682-b18c-4a83-8c01-86a8b60c87cc para" +
+                        " o status Pronto", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
 #line hidden
 #line 18
  await testRunner.ThenAsync("deve retornar mensagem dizendo que pedido não existe", ((string)(null)), ((global::Reqnroll.Table)(null)), "Então ");

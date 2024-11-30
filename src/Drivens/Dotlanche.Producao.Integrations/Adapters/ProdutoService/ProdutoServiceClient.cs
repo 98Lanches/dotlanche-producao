@@ -24,7 +24,7 @@ namespace Dotlanche.Producao.Integrations.Adapters.ProdutoService
             var content = await response.Content.ReadAsStringAsync(cancellationToken);
             var produtoResponse = JsonSerializer.Deserialize<IEnumerable<GetProdutosByIdsResponse>>(content, defaultJsonOptions) ?? [];
 
-            var produtos = produtoResponse.Select(x => new Produto(x.Id, x.Name, x.Categoria ?? string.Empty, x.Price ?? 0));
+            var produtos = produtoResponse.Select(x => new Produto(x.Id, x.Name, x.Categoria?.Name ?? string.Empty, x.Price ?? 0));
 
             return produtos;
         }

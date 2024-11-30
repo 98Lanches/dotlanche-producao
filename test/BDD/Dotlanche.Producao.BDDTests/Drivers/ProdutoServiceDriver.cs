@@ -1,4 +1,5 @@
 ﻿using Dotlanche.Producao.Domain.Entities;
+using Dotlanche.Producao.Integrations.Adapters.ProdutoService.Responses;
 using System.Text.Json;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
@@ -20,7 +21,20 @@ namespace Dotlanche.Producao.BDDTests.Drivers
             if (produtoServiceServerMock == null || !produtoServiceServerMock.IsStarted)
                 throw new InvalidOperationException("Wiremock server needs to be set before setting it up!");
 
-            var responseJson = JsonSerializer.Serialize(produtos);
+            var produtosServiceResponse = produtos.Select(x =>
+                new GetProdutosByIdsResponse()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Price = x.Price,
+                    Categoria = new()
+                    {
+                        Id = 1,
+                        Name = x.Name,
+                    }
+                }
+            );
+            var responseJson = JsonSerializer.Serialize(produtosServiceResponse);
 
             produtoServiceServerMock
                 .Given(
