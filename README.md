@@ -2,7 +2,7 @@
 
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=98Lanches_dotlanche-producao&metric=coverage)](https://sonarcloud.io/summary/new_code?id=98Lanches_dotlanche-producao)
 
-Microsserviço de Produção Dotlanche. Responsável pela inicialização da produção de um pedido, por disponibilizar a fila de produção dos pedidos e também pela atualização dos status dos pedidos.
+Microsserviço de Produção Dotlanche. Responsável pela inicialização da produção de um pedido, por disponibilizar a fila de produção dos pedidos e também pelas atualizações dos status dos pedidos.
 
 # Funcionalidades
 - Inicialização de produção do pedido
